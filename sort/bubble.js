@@ -1,3 +1,7 @@
+/**
+ * 冒泡排序
+ */
+
 function sort(list) {
   let times = 0;
   let border = list.length - 1;

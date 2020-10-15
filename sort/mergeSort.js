@@ -2,6 +2,25 @@
  * 归并排序
  */
 
+function merge(arr, left, mid, right) {
+  let [temp, leftIdx, rightIdx, tempIdx] = [[], left, mid + 1, 0];
+  while (leftIdx <= mid && rightIdx <= right) {
+    temp[tempIdx++] =
+      arr[leftIdx] < arr[rightIdx] ? arr[leftIdx++] : arr[rightIdx++];
+  }
+  while (leftIdx <= mid) {
+    temp[tempIdx++] = arr[leftIdx++];
+  }
+  while (rightIdx <= right) {
+    temp[tempIdx++] = arr[rightIdx++];
+  }
+
+  tempIdx = 0;
+  for (let i = left; i <= right; i++) {
+    arr[i] = temp[tempIdx++];
+  }
+}
+
 function mergeSort(arr, left, right) {
   if (left < right) {
     let mid = Math.floor((left + right) / 2);
@@ -12,29 +31,6 @@ function mergeSort(arr, left, right) {
   }
 }
 
-function merge(arr, left, mid, right) {
-  let temp = [];
-  let leftIndex = left;
-  let rightIndex = mid + 1;
-  let tempIndex = 0;
-  while (leftIndex <= mid && rightIndex <= right) {
-    temp[tempIndex++] =
-      arr[leftIndex] < arr[rightIndex] ? arr[leftIndex++] : arr[rightIndex++];
-  }
-
-  while (leftIndex <= mid) {
-    temp[tempIndex++] = arr[leftIndex++];
-  }
-
-  while (rightIndex <= right) {
-    temp[tempIndex++] = arr[rightIndex++];
-  }
-  tempIndex = 0;
-  for (let i = left; i <= right; i++) {
-    arr[i] = temp[tempIndex++];
-  }
-}
-
-const arr = [4, 2, 5, 7, 9, 6, 23, 45, 12];
+const arr = [3, 2, 5, 7, 4, 8, 45, 12, 3];
 mergeSort(arr, 0, arr.length - 1);
-console.log("res", arr.join(","));
+console.log("arr", arr);

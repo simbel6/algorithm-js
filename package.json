@@ -1,0 +1,30 @@
+{
+  "name": "algorithm-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest ./test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simbel6/algorithm-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simbel6/algorithm-js/issues"
+  },
+  "homepage": "https://github.com/simbel6/algorithm-js#readme",
+  "devDependencies": {
+    "jest": "^26.6.0"
+  },
+  "dependencies": {
+    "@babel/core": "^7.12.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^26.6.0",
+    "babel-preset-env": "^1.7.0",
+    "regenerator-runtime": "^0.13.7"
+  }
+}

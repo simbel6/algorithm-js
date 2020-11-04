@@ -1,17 +1,28 @@
-function bubbleSort(list) {
-  for (let i = 0; i < list.length; i++) {
-    let isSorted = true;
-    for (let j = 0; j < list.length - 1 - i; j++) {
-      if (list[j] > list[j + 1]) {
-        [list[j + 1], list[j]] = [list[j], list[j + 1]];
-        isSorted = false;
-      }
+function partition(arr, l, r) {
+  let pivot = arr[l];
+  while (l < r) {
+    while (l < r && arr[r] >= pivot) {
+      r--;
     }
-    if (isSorted) break;
+    arr[l] = arr[r];
+    while (l < r && arr[l] < pivot) {
+      l++;
+    }
+    arr[r] = arr[l];
   }
-  return list;
+  arr[l] = pivot;
+  return l;
+}
+
+function sort(arr, left, right) {
+  if (left < right) {
+    let p = partition(arr, left, right);
+    sort(arr, left, p);
+    sort(arr, p + 1, right);
+  }
+  return arr;
 }
 
 let arr = Array.from({ length: 20 }, () => (Math.random() * 10) | 0);
 console.log("arr", arr);
-console.log("sort", bubbleSort(arr));
+console.log("sort", sort(arr, 0, arr.length - 1));

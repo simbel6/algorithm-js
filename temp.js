@@ -1,28 +1,32 @@
-function partition(arr, l, r) {
-  let pivot = arr[l];
-  while (l < r) {
-    while (l < r && arr[r] >= pivot) {
-      r--;
+/**
+* @param {left} Object 实例对象
+* @param {right} Function 构造函数
+*/
+function myInstanceof (left, right) {
+    // 保证运算符右侧是一个构造函数
+    if (typeof right !== 'function') {
+        throw new Error('运算符右侧必须是一个构造函数')
+        return
     }
-    arr[l] = arr[r];
-    while (l < r && arr[l] < pivot) {
-      l++;
+
+    // 如果运算符左侧是一个null或者基本数据类型的值，直接返回false 
+    if (left === null || !['function', 'object'].includes(typeof left)) {
+        return false
     }
-    arr[r] = arr[l];
-  }
-  arr[l] = pivot;
-  return l;
+
+    // 只要该构造函数的原型对象出现在实例对象的原型链上，则返回true，否则返回false
+    let proto = Object.getPrototypeOf(left)
+    while (true) {
+
+        // 遍历完了目标对象的原型链都没找到那就是没有，即到了Object.prototype
+
+        if (proto === null) return false
+
+        // 找到了
+        if (proto === right.prototype) return true
+
+        // 沿着原型链继续向上找
+        proto = Object.getPrototypeOf(proto)
+    }
 }
 
-function sort(arr, left, right) {
-  if (left < right) {
-    let p = partition(arr, left, right);
-    sort(arr, left, p);
-    sort(arr, p + 1, right);
-  }
-  return arr;
-}
-
-let arr = Array.from({ length: 20 }, () => (Math.random() * 10) | 0);
-console.log("arr", arr);
-console.log("sort", sort(arr, 0, arr.length - 1));

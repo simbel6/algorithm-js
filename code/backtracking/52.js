@@ -33,3 +33,28 @@ function valid(row, n, cols, left, right, result, temp) {
     right.delete(row - i);
   }
 }
+
+// 位运算解法
+
+const totalNQueens = function (n) {
+  if (n < 1) return [];
+  let count = 0;
+
+  dfs(0, n, 0, 0, 0);
+
+  function dfs(row, n, cols, left, right) {
+    if (row >= n) {
+      count++;
+      return;
+    }
+    // 得到当前所有的空位
+    let bits = ~(cols | left | right) & ((1 << n) - 1);
+    while (bits) {
+      // 取到最低位的1
+      let p = bits & -bits;
+      dfs(row + 1, n, cols | p, (left | p) << 1, (right | p) >> 1);
+      // 去掉最低位的1
+      bits = bits & (bits - 1);
+    }
+  }
+};

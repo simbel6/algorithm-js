@@ -36,7 +36,7 @@ function valid(row, n, cols, left, right, result, temp) {
 
 // 位运算解法
 
-const totalNQueens = function (n) {
+const totalNQueens1 = function (n) {
   if (n < 1) return [];
   let count = 0;
 
